@@ -1,13 +1,14 @@
 package company;
 
-public class Employee {
+//抽象クラスに変更（Lesson4-4.3）
+public abstract class Employee implements Workable{
     //フィールド
-    protected final String name; //protected finalを付与
-    private final Department department;//Department
-    private final String position;//private finalを付与
-    private final int employeeId;//private finalを付与
+    protected final String name; 
+    protected final Department department;
+    private final String position;
+    private final int employeeId;
     
-    //コンストラクター　因数をDepartment型に変更
+    //コンストラクター　
     public Employee(String name, Department department, String position,int employeeId) { 
         this.name = name;
         this.department = department;
@@ -20,16 +21,18 @@ public class Employee {
         System.out.println(times + "回目の報告をします。役職:" +position+"、名前:" + name);
     }
     
-    //報告メソッド（オーバー）ロード
+    //報告メソッド（オーバーロード)
     public void report(){
         report(1);
     }
-    
+    //抽象メソッドに変更
     //会議に参加するメソッド
-    public void joinMeeting() {
-        department.meeting();//部署オブジェクトのメソッドを呼び出し
-        System.out.println("→上記の会議に参加します。部署:" +department.getName()+ "名前:" + name);
-    //.getName部署オブジェクトメソッド(getter)を呼び出し、部署名の取得
+    public abstract void joinMeeting();
+   
+    //働くメソッドを実装
+    @Override
+    public void work() {
+        System.out.println("正社員として働きます。名前：" + name + slogan); 
     }
 }
 
